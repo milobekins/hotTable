@@ -11,6 +11,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+        
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -23,10 +24,13 @@
                     <h1 class="display-4"><strong>Welcome to Hot Table</strong></h1>
                     <a href="index.html"><button class="btn btn-lg btn-primary"><span class="fa fa-credit-card"></span> Home</button></a>
                     <a href="reservation.html"><button class="btn btn-lg btn-danger"><span class="fa fa-credit-card"></span> Make Reservation</button></a>
-
+                    <button class="btn bg-dark btn-primary" type="button" data-toggle="collapse" data-target="#card" aria-expanded="false" aria-controls="card">
+                        View Waitlist
+                      </button>
                 </div>
             </div>
         </div>
+        <div class="container" style="width: 600px; height: 400px; float: left;">
         <div class="row">
             <div class="col">
                 <div class="card" style="width: 18rem;">
@@ -66,8 +70,36 @@
                 </table>
             </div>
         </div>
+</div>
+<div class="card" id="card" style="width: 300px; height: 600px;">
+    <div class="row">
+      <div class="col-lg-12">
+            <p class="text-center" style="letter-spacing: 3px; font-size: 32px; font-weight: bold;"><br>Waitlist<br><strong> <span id="bidItem"></span></strong></p>
+          </div>
+        </div>
 
-         
+    <!-- Current Waitlist-->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+   <div class="card-body">
+         <div class="row">
+           <div class="col-sm-4 col-sm-offset-2">
+          </div>
+          <div class="col-lg-12">
+            <p class=""><strong>Reservation Name: <br></strong> <span id="reserve-name"></span></p>
+            <br>
+            <p class=""><strong>Reservation Phone:<br></strong> <span id="reserve-phone"></span></p>
+            <br>
+            <p class=""><strong>Reservation Email: <br></strong> <span id="reserve-email"></span></p>
+            <br>
+            <p class=""><strong>Reservation ID: <br></strong> <span id="reserve-unique-id"></span></p>
+            <br>
+            <hr>
+        </div>
+       </div>
+    </div>
+  </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

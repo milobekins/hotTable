@@ -22,38 +22,70 @@
                 <div class="jumbotron">
                     <h1 class="display-4">Make your reservation</h1>
                     <a href="tables.html"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> View Tables</button></a>
-                    
+                    <button class="btn bg-dark btn-primary" type="button" data-toggle="collapse" data-target="#card" aria-expanded="false" aria-controls="card">
+                        View Waitlist
+                      </button>
                 </div>
             </div>
         </div>
+        <div class="container" style="float: left; width: 300px; height: 400px;">
         <div class="row">
             <div class="col">
                 <form>
                     <div class="form-group">
-                      <label for="name">Name</label>
-                      <input type="name" class="form-control" id="inputName" aria-describedby="nameHelp" placeholder="Enter Name">
+                      <label for="name"> Reservation Name</label>
+                      <input type="name" class="form-control" id="reserve-name" aria-describedby="nameHelp" placeholder="Enter Name">
                     </div>
                     <div class="form-group">
-                      <label for="password">Password</label>
-                      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                      <label for="password">Reservation Phone</label>
+                      <input type="number" class="form-control" id="reserve-phone" placeholder="#">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        <label for="email">Reservation Email</label>
+                        <input type="email" class="form-control" id="reserve-email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="ID">Unique ID</label>
-                        <input type="ID" class="form-control" id="inputID" placeholder="ID">
+                        <input type="ID" class="form-control" id="reserve-unique-id" placeholder="ID">
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Reserve</button>
+                    <button type="submit" class="btn btn-primary">Book Reservation</button>
                   </form>
         
             </div>
             
         </div>
+        </div>
 
-         
+        <div class="card" id="card" style="width: 300px; height: 600px;">
+            <div class="row">
+              <div class="col-lg-12">
+                    <p class="text-center" style="letter-spacing: 3px; font-size: 32px; font-weight: bold;"><br>Waitlist<br><strong> <span id="bidItem"></span></strong></p>
+                  </div>
+                </div>
+        
+            <!-- Current Waitlist -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+           <div class="card-body">
+                 <div class="row">
+                   <div class="col-sm-4 col-sm-offset-2">
+                  </div>
+                  <div class="col-lg-12">
+                    <p class=""><strong>Reservation Name: <br></strong> <span id="reserve-name"></span></p>
+                    <br>
+                    <p class=""><strong>Reservation Phone:<br></strong> <span id="reserve-phone"></span></p>
+                    <br>
+                    <p class=""><strong>Reservation Email: <br></strong> <span id="reserve-email"></span></p>
+                    <br>
+                    <p class=""><strong>Reservation ID: <br></strong> <span id="reserve-unique-id"></span></p>
+                    <br>
+                    <hr>
+                </div>
+               </div>
+            </div>
+          </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

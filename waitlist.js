@@ -1,3 +1,4 @@
+
 // Dependencies
 // =============================================================
 var express = require("express");
@@ -12,6 +13,45 @@ var PORT = process.env.PORT || 3000;
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+=======
+// Validates if there are any tables available
+
+
+
+// Submit OnClick 
+$(".submit").on("click", function(event) {
+    event.preventDefault();
+
+// Variable that contains jQuery selectors
+var newReservation = {
+    customerName: $("#reserve-name").val().trim(),
+    phoneNumber: $("#reserve-phone").val().trim(),
+    customerEmail: $("#reserve-email").val().trim(),
+    customerID: $("#reserve-unique-id").val().trim()
+  };
+
+  console.log(newReservation);
+
+  $.post("/api/tables", newReservation,
+    function(data) {
+        
+        // If table is available
+        if (data) {
+            alert('Reservation Booked');
+        }
+
+        // If a table is unavailable 
+        else { 
+            alert('Added to Waitlist');
+        }
+
+        // Clears form
+        $("#reserve-name").val("");
+        $("#reserve-phone").val("");
+        $("#reserve-email").val("");
+        $("#reserve-unique-id").val("");
+    });
+
 
 // Array that contains all guests currently waiting for a table
 var waitListArr = [

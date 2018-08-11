@@ -1,3 +1,19 @@
+
+// Dependencies
+// =============================================================
+var express = require("express");
+var bodyParser = require("body-parser");
+var path = require("path");
+
+// Sets up the Express App
+// =============================================================
+var app = express();
+var PORT = process.env.PORT || 3000;
+
+// Sets up the Express app to handle data parsing
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+=======
 // Validates if there are any tables available
 
 
@@ -35,6 +51,7 @@ var newReservation = {
         $("#reserve-email").val("");
         $("#reserve-unique-id").val("");
     });
+
 
 // Array that contains all guests currently waiting for a table
 var waitListArr = [
@@ -80,10 +97,53 @@ var tableInfo = [{
     isAvailable: true,
 }];
 
+// Variable that contains jQuery selectors
+var newReservation = {
+    customerName: $("#reserve-name").val().trim(),
+    phoneNumber: $("#reserve-phone").val().trim(),
+    customerEmail: $("#reserve-email").val().trim(),
+    customerID: $("#reserve-unique-id").val().trim()
+  };
 
+  console.log(newReservation);
 
 // Functions
 // ==========================================================================================
+
+function validateTables () {
+    let tablesAvailableArr = [];
+    var currentURL = window.location.origin;
+
+    $.ajax({ url: currentURL + "api/tableInfo", method: "GET"
+}).then(function(tableData){
+    tableData.forEach(table => {
+        if(table.isAvailable) {
+            tablesAvailableArr.push(table);
+        }
+    });
+});
+    return(tablesAvailableArr.length <= 0 ? true : false);
+}
+
+function runTableQuery() {
+    var currentURL = window.location.origin;
+
+    $.ajax({ url: currentURL + "api/tableInfo", method: "GET"
+}).then(function(tableData){
+    tableData.forEach(table => {
+        var tbl = $(".table");
+        var thead = $("<thead");
+        var tr = $("<th>");
+        var th = $("<th>");
+        th.append(table);
+        tr.append(th);
+        thead.append(tr);
+        tbl.append(thead);
+    });
+});
+}
+
+
 function checkWaitList() {
 
     var currentURL = window.location.origin;
@@ -125,6 +185,35 @@ function checkWaitList() {
     location.reload();
 
   });
+
+  // Submit OnClick 
+$(".submit").on("click", function(event) {
+    event.preventDefault();
+    // Validates if there are any tables available
+    if (!validateTables()) { 
+        alert("Sorry. All tables are reserved!");
+    } else {
+        $.post("/api/tables", newReservation,
+        function(data) {
+            
+            // If table is available
+            if (data) {
+                alert('Reservation Booked');
+            }
+
+            // If a table is unavailable 
+            else { 
+                alert('Added to Waitlist');
+            }
+
+            // Clears form
+            $("#reserve-name").val("");
+            $("#reserve-phone").val("");
+            $("#reserve-email").val("");
+            $("#reserve-unique-id").val("");
+        });
+    }
+});
 
 
   // Run Queries!
